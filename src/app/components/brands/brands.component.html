@@ -1,0 +1,12 @@
+<section class="my-3">
+    <h2 class="text-main text-center mb-3">Brands Product</h2>
+    <div class="row g-3">
+        @for (brand of brandDetails; track $index) {
+            <div class="col-md-2">
+                <div class="product">
+                    <img [src]="brand.image" class="w-100" [alt]="brand.name">
+                </div>
+            </div>
+        }
+    </div>
+</section>

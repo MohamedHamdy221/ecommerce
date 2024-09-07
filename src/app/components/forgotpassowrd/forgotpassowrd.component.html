@@ -1,0 +1,59 @@
+
+
+
+<section class="mb-4">
+    <h1 class="text-center text-main my-2">Forgot Password</h1>
+
+    @if (step==1) {
+        <form [formGroup]="verifyEmail" class="bg-main-light rounded-4 shadow p-3" (ngSubmit)="verifyEmailSubmit()">
+            <div class="my-2">
+                <label for="email">Email:</label>
+                <input id="email" type="email" class="form-control" formControlName="email">
+                @if (verifyEmail.get('email')?.errors && (verifyEmail.get('email')?.touched||verifyEmail.get('email')?.dirty)) {
+                    <div class="alert alert-danger w-50">
+                        @if (verifyEmail.get('email')?.getError('required')) {
+                            <p>email required.</p>
+                        }
+                        @else if (verifyEmail.get('email')?.getError('email')) {
+                            <p>Enter Valid Email.</p>
+                        }
+                        </div>
+                    
+                    }
+                    </div>
+    
+           
+            <button [disabled]="verifyEmail.invalid" class="btn-main">Verify Email</button>
+        </form>
+    }
+
+    @else if (step==2) {
+        <form [formGroup]="verifyCode" class="bg-main-light rounded-4 shadow p-3" (ngSubmit)="verifyCodeSubmit()">
+            <div class="my-2">
+                <label for="resetCode">resetCode:</label>
+                <input id="resetCode" type="text" class="form-control" formControlName="resetCode">
+            </div>
+    
+            <button [disabled]="verifyCode.invalid" class="btn-main">Verify Code</button>
+        </form>
+    }
+    
+    @else if (step==3) {
+        <form [formGroup]="resetPassword" class="bg-main-light rounded-4 shadow p-3" (ngSubmit)="resetPasswordSubmit()">
+        
+            <div class="my-2">
+                <label for="email">Email:</label>
+                <input id="email" type="email" class="form-control" formControlName="email">
+            </div>
+               
+      
+            <div class="my-2">
+                <label for="newPassword">newPassword:</label>
+                <input id="newPassword" type="password" class="form-control" formControlName="newPassword">
+            </div>
+    
+            <button [disabled]="resetPassword.invalid" class="btn-main">Verify password</button>
+        </form>
+    }
+
+</section>
